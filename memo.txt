@@ -1,2 +1,8 @@
 github에서 수정한 것을 당겨올 때: git pull
 commit확인: git log
+
+<설치하기 과정>
+git clone https://github.com/hayujin/centos
+cd centos
+cd scripts
+./install_all.sh
