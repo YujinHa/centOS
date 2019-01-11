@@ -1,0 +1,2 @@
+github에서 수정한 것을 당겨올 때: git pull
+commit확인: git log
