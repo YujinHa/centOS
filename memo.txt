@@ -6,3 +6,5 @@ git clone https://github.com/hayujin/centos
 cd centos
 cd scripts
 ./install_all.sh
+
+git에 올렸던 것을 삭제할 경우: git rm (파일이름)
