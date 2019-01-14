@@ -1,5 +1,6 @@
-install_all.sh
-mpv.sh
+#!/bin/sh
 nvidia.sh
-rmdeep.sh
 utility.sh
+code.sh
+mpv.sh
+rmdeep.sh
