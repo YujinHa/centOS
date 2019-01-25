@@ -24,7 +24,11 @@ def addProject(projectName):
 			"doc/concept"]
 	for d in subDirs:
 		p = "/".join([ROOT,projectName,d])
-		os.makedirs(p)
+		try:
+			os.makedirs(p)
+		except:
+			return "%s 프로젝트를 생성할 수 없습니다." % (projectN)
+	return None
 
 def checkRoot():
 	"""
@@ -48,24 +52,27 @@ def help():
 	"""
 	함수 실행 방법이 잘못되었을 때 함수 실행 방법을 알려준다
 	"""
-		print "How to use:"
-		print "$ addprojectanswer projectname"
+	print "How to use:"
+	print "$ addprojectanswer projectname"
 
 if __name__ == "__main__":
 	#입력갯수 체크
 	if len(sys.argv) != 2:
 		help()
-		sys.exit()
+		sys.exit(1)
 	projectName = sys.argv[1]
 	#/project 존재유무 체크
 	err = checkRoot()
 	if err:
 		print err
-		sys.exit()
+		sys.exit(1)
 	#프로젝트가 이미 존재하는지 체크
 	err = isProject(projectName)
 	if err:
 		print err
-		sys.exit()
+		sys.exit(1)
 	#프로젝트 하위 경로 생성
-	addProject(projectName)
+	err = addProject(projectName)
+	if err:
+		print err
+		sys.exit(1)
