@@ -24,11 +24,21 @@ def addProject(name):
 		p = "/".join([root,name,d])
 		os.makedirs(p)
 
+def checkProject(name):
+	root = "/project"
+	if os.path.exists(root) == True:
+		n = "/".join([root,name])
+		if os.path.exists(n) == False:
+			addProject(name)
+		else:
+			print "%s 폴더가 이미 있습니다!" % (name)
+	else:
+		print "project 폴더가 존재하지 않습니다!"
+
 if __name__ == "__main__":
 	if len(sys.argv) != 2:
 		print "How to use:"
 		print "$ addproject projectname"
 		sys.exit()
 	name = sys.argv[1]
-	addProject(name)
-
+	checkProject(name)
