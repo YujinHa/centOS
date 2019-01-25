@@ -3,11 +3,12 @@
 import os
 import sys
 
+root = "/project"
+
 def addProject(name):
 	"""
 	프로젝트 하위 경로를 생성하는 함수입니다.
 	"""
-	root = "/project"
 	subDirs = ["shot",
 			"in",
 			"out",
@@ -25,20 +26,25 @@ def addProject(name):
 		os.makedirs(p)
 
 def checkProject(name):
-	root = "/project"
 	if os.path.exists(root) == True:
-		n = "/".join([root,name])
-		if os.path.exists(n) == False:
-			addProject(name)
-		else:
-			print "%s 폴더가 이미 있습니다!" % (name)
+		isProject(name)
 	else:
 		print "project 폴더가 존재하지 않습니다!"
 
+def isProject(name):
+	n = "/".join([root,name])
+	if os.path.exists(n) == False:
+		addProject(name)
+	else:
+		print "%s 프로젝트가 이미 있습니다!" % (name)
+
+def help():
+		print "How to use:"
+		print "$ addprojectanswer projectname"
+		sys.exit()
+
 if __name__ == "__main__":
 	if len(sys.argv) != 2:
-		print "How to use:"
-		print "$ addproject projectname"
-		sys.exit()
+		help()
 	name = sys.argv[1]
 	checkProject(name)
