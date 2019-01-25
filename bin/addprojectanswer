@@ -3,12 +3,13 @@
 import os
 import sys
 
-root = "/project"
+ROOT = "/project"
 
-def addProject(name):
+def addProject(projectName):
 	"""
 	프로젝트 하위 경로를 생성하는 함수입니다.
 	"""
+	global ROOT
 	subDirs = ["shot",
 			"in",
 			"out",
@@ -22,29 +23,49 @@ def addProject(name):
 			"doc",
 			"doc/concept"]
 	for d in subDirs:
-		p = "/".join([root,name,d])
+		p = "/".join([ROOT,projectName,d])
 		os.makedirs(p)
 
-def checkProject(name):
-	if os.path.exists(root) == True:
-		isProject(name)
-	else:
-		print "project 폴더가 존재하지 않습니다!"
+def checkRoot():
+	"""
+	/project 폴더가 존재하는지 체크한다
+	"""
+	global ROOT
+	if not os.path.exists(ROOT):
+		return "%s 폴더가 존재하지 않습니다!" % (ROOT)
+	return None
 
-def isProject(name):
-	n = "/".join([root,name])
-	if os.path.exists(n) == False:
-		addProject(name)
-	else:
-		print "%s 프로젝트가 이미 있습니다!" % (name)
+def isProject(projectName):
+	"""
+	같은 이름의 프로젝트가 존재하는지 체크한다
+	"""
+	global ROOT
+	if os.path.exists("%s/%s" % (ROOT,projectName)):
+		return "%s 프로젝트가 이미 존재합니다!" % (projectName)
+	return None
 
 def help():
+	"""
+	함수 실행 방법이 잘못되었을 때 함수 실행 방법을 알려준다
+	"""
 		print "How to use:"
 		print "$ addprojectanswer projectname"
-		sys.exit()
 
 if __name__ == "__main__":
+	#입력갯수 체크
 	if len(sys.argv) != 2:
 		help()
-	name = sys.argv[1]
-	checkProject(name)
+		sys.exit()
+	projectName = sys.argv[1]
+	#/project 존재유무 체크
+	err = checkRoot()
+	if err:
+		print err
+		sys.exit()
+	#프로젝트가 이미 존재하는지 체크
+	err = isProject(projectName)
+	if err:
+		print err
+		sys.exit()
+	#프로젝트 하위 경로 생성
+	addProject(projectName)
