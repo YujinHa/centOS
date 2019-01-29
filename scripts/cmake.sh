@@ -12,7 +12,7 @@ mv /home/$USER/app/cmake-3.13.3 /home/$USER/app/cmake-3.13.3_src
 mkdir cmake-3.13.3
 cd /home/$USER/app/cmake-3.13.3_src
 #여기서부터는 수동으로 진행해야 함.
-scl enable devtoolset-6 bash
-./configure --prefix="/home/$USER/app/cmake-3.13.3"
+scl enable devtoolset-6 bash #버전바꾸기
+./configure --prefix="/home/$USER/app/cmake-3.13.3" #파일 가져왔는지 체크
 make
 make install
