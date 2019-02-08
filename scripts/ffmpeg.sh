@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/sh
 if [ ! -d "/home/$USER/app" ]; then
 	mkdir /home/$USER/app
 fi
