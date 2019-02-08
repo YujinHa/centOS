@@ -11,3 +11,4 @@
 ./ffmpeg.sh
 ./handbrake.sh
 ./openimageio.sh
+./ocio_config.sh
