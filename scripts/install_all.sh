@@ -9,6 +9,7 @@
 ./pip.sh
 ./devtools.sh
 ./ffmpeg.sh
+./rmhotcorner.sh
 ./handbrake.sh
 ./openimageio.sh
 ./ocio_config.sh
